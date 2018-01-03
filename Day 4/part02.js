@@ -518,7 +518,7 @@ function validPassPhrases(passPhrases) {
   let valid = passPhrases.length;
   passPhrases.map(pp => {
     sortedPP = pp.split(' ').sort();
-    const subSortedPP = [];
+    let subSortedPP = [];
     sortedPP.forEach(ssp => {
       subSortedPP.push(
         ssp
@@ -527,12 +527,10 @@ function validPassPhrases(passPhrases) {
           .join('')
       );
     });
-    updatedPP.push(subSortedPP.sort());
-  });
+    subSortedPP = subSortedPP.sort();
 
-  updatedPP.map(passPhrase => {
     broken = false;
-    passPhrase.reduce((acc, curr, index, array) => {
+    subSortedPP.reduce((acc, curr, index, array) => {
       if (acc === curr) {
         broken = true;
       }
