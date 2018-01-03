@@ -514,19 +514,18 @@ const passPhrases = [
 ];
 
 function validPassPhrases(passPhrases) {
-  let valid = passPhrases.length;
+  let valid = 0;
   passPhrases.map(pp => {
     let sortedPP = pp.split(' ').sort();
-    let broken = false;
+    let duplicate = false;
     sortedPP.reduce((acc, curr, index, array) => {
-      if (acc == curr) {
-        broken = true;
+      if (acc === curr) {
+        duplicate = true;
       }
       return (acc = curr);
     });
-    valid -= broken;
+    valid = duplicate ? valid : ++valid;
   });
-
   return valid;
 }
 
