@@ -515,28 +515,25 @@ const passPhrases = [
 
 function validPassPhrases(passPhrases) {
   const updatedPP = [];
-  let valid = passPhrases.length;
+  let valid = 0;
   passPhrases.map(pp => {
     sortedPP = pp.split(' ').sort();
-    let subSortedPP = [];
-    sortedPP.forEach(ssp => {
-      subSortedPP.push(
-        ssp
-          .split('')
-          .sort()
-          .join('')
-      );
-    });
+    let subSortedPP = sortedPP.map(ssp =>
+      ssp
+        .split('')
+        .sort()
+        .join('')
+    );
     subSortedPP = subSortedPP.sort();
 
-    broken = false;
+    duplicate = false;
     subSortedPP.reduce((acc, curr, index, array) => {
       if (acc === curr) {
-        broken = true;
+        duplicate = true;
       }
       return (acc = curr);
     });
-    valid -= broken;
+    valid = duplicate ? valid : ++valid;
   });
 
   return valid;
