@@ -514,15 +514,11 @@ const passPhrases = [
 ];
 
 function validPassPhrases(passPhrases) {
-  let updatedPP = [];
   let valid = passPhrases.length;
   passPhrases.map(pp => {
-    updatedPP.push(pp.split(' ').sort());
-  });
-
-  updatedPP.map(passPhrase => {
+    let sortedPP = pp.split(' ').sort();
     let broken = false;
-    passPhrase.reduce((acc, curr, index, array) => {
+    sortedPP.reduce((acc, curr, index, array) => {
       if (acc == curr) {
         broken = true;
       }
