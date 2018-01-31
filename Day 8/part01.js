@@ -1017,7 +1017,7 @@ loi = loi
     }
   });
 
-var keysArray = Object.keys(register).map(function(key) {
+let keysArray = Object.keys(register).map(function(key) {
   return register[key];
 });
 console.log(Math.max.apply(null, keysArray));
